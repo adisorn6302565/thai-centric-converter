@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thai-Centric Converter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden; /* Prevent scrollbars from the blobs moving outside the viewport */
+    }
+    body {
+      font-family: 'Kanit', sans-serif;
+      background-color: #020617; /* slate-950 base color */
+      position: relative;
+    }
+    
+    .background-gradient {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        filter: blur(100px); /* Heavy blur for a soft, diffuse light effect */
+        transform: translateZ(0); /* Promotes hardware acceleration */
+    }
+
+    .blob {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.5;
+    }
+
+    .blob1 {
+        width: 600px;
+        height: 600px;
+        background-color: #4f46e5; /* Indigo */
+        animation: animate1 28s infinite alternate ease-in-out;
+    }
+
+    .blob2 {
+        width: 450px;
+        height: 450px;
+        background-color: #d946ef; /* Fuchsia */
+        animation: animate2 32s infinite alternate ease-in-out;
+    }
+
+    .blob3 {
+        width: 350px;
+        height: 350px;
+        background-color: #f59e0b; /* Amber */
+        animation: animate3 24s infinite alternate ease-in-out;
+    }
+
+    @keyframes animate1 {
+        0% { transform: translate(-10%, -10%) scale(1); }
+        100% { transform: translate(calc(100vw - 500px), calc(100vh - 500px)) scale(1.2); }
+    }
+
+    @keyframes animate2 {
+        0% { transform: translate(calc(100vw - 400px), calc(100vh - 400px)) scale(1.1); }
+        100% { transform: translate(10vw, 10vh) scale(0.8); }
+    }
+    
+    @keyframes animate3 {
+        0% { transform: translate(50vw, -20%) scale(0.9); }
+        100% { transform: translate(20vw, 80vh) scale(1.1); }
+    }
+
+    #root {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        overflow-y: auto; /* Allow scrolling for the content itself */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="text-slate-100">
+  <div class="background-gradient">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+  </div>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
