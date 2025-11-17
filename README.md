@@ -71,4 +71,3 @@ npm run preview
 
 ---
 
-If you want, I can add screenshots, component usage examples, or translate the README fully to Thai.
