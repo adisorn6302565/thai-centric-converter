@@ -1,73 +1,92 @@
-﻿# thai-centric-converter
+# Thai-Centric Converter 🇹🇭
 
-Short and simple converter UI focused on Thai-centric formats.
+เครื่องมือแปลงหน่วยสำหรับหน่วยวัดที่คนไทยใช้งานจริง เช่น ไร่ งาน ตารางวา บาททองคำ สลึง เกวียน หาบ วา ศอก และทะนาน โดยออกแบบให้ใช้งานง่ายบนมือถือและคำนวณในเบราว์เซอร์โดยตรง
 
-## Quick Start
+## จุดเด่น
 
-Requirements:
+- แปลงหน่วยที่ดิน: ไร่ งาน ตารางวา ตารางเมตร เอเคอร์ และเฮกตาร์
+- แปลงหน่วยทองคำ: บาท สลึง กรัม และทรอยออนซ์ พร้อมเลือกทองคำแท่ง/ทองรูปพรรณ
+- แปลงหน่วยเกษตร: เกวียน ถัง และกิโลกรัม
+- แปลงหน่วยความยาว: วา ศอก คืบ เส้น โยชน์ และเมตร
+- แปลงหน่วยน้ำหนัก: หาบ ชั่ง ตำลึง และกิโลกรัม
+- แปลงหน่วยปริมาตร: ทะนานและลิตร
+- ค้นหาหมวดหน่วยจากหน้าแรก
+- ปักหมวดที่ใช้บ่อยเป็นรายการโปรด
+- จำหมวดล่าสุดและรายการโปรดไว้ในเครื่องด้วย `localStorage`
+- สลับหน่วยต้นทาง/ปลายทางได้ในคลิกเดียว
+- คัดลอกผลลัพธ์ไปใช้ต่อได้ทันที
+- แสดงอัตราแปลงของ 1 หน่วย พร้อมข้อมูลอ้างอิงของแต่ละหมวด
+- ไม่ต้องใช้ API key และไม่ส่งค่าที่กรอกไปยังเซิร์ฟเวอร์
 
-- Node.js v18+ (or compatible)
-- Git (optional)
+## เทคโนโลยี
 
-Install and run (PowerShell):
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS ผ่าน CDN สำหรับส่วนติดต่อผู้ใช้
+- รองรับ Node.js 18 ขึ้นไป
+
+## เริ่มใช้งาน
+
+เปิด PowerShell ในโฟลเดอร์โปรเจกต์:
 
 ```powershell
+cd D:\โปรแกรม\โฟลเดอร์ภาษาไทย
 npm install
 npm run dev
-
-# open http://localhost:5173
 ```
 
-Build for production:
+จากนั้นเปิด URL ที่ Vite แสดง เช่น:
+
+```text
+http://localhost:5173
+```
+
+## Build สำหรับ production
 
 ```powershell
 npm run build
 npm run preview
 ```
 
-## Project structure
+ไฟล์ production จะถูกสร้างไว้ในโฟลเดอร์ `dist/`
 
-- `components/`: React components used by the app
-- `index.tsx`, `App.tsx`: application entry points
+## โครงสร้างโปรเจกต์
 
-## Notes
-
-- This repository does not include or rely on any AI provider by default.
-- If you need environment-specific keys for optional services, create a `.env.local` with entries like `KEY=value`. Do not commit secrets.
-
----
-
-## การติดตั้งและใช้งาน (ภาษาไทย)
-
-ข้อกำหนด:
-
-- ติดตั้ง Node.js เวอร์ชัน 18 ขึ้นไป
-
-ติดตั้งและรัน (PowerShell):
-
-```powershell
-npm install
-npm run dev
-
-# เปิดเว็บที่ http://localhost:5173
+```text
+.
+├─ components/
+│  ├─ GenericConverter.tsx   # ตัวแปลงหน่วยทั่วไป
+│  ├─ GoldConverter.tsx      # ตัวแปลงทองคำ
+│  ├─ LandConverter.tsx      # ตัวแปลงที่ดิน
+│  ├─ Card.tsx
+│  └─ icons.tsx
+├─ App.tsx                   # layout, search และรายการโปรด
+├─ constants.tsx             # สูตรและชุดหน่วยทั้งหมด
+├─ types.ts                  # TypeScript types
+├─ index.tsx                 # entry point
+├─ index.html
+└─ index.css
 ```
 
-สั่ง build สำหรับ production:
+## ค่ามาตรฐานที่ใช้
+
+สูตรแปลงหลักถูกเก็บไว้ใน `constants.tsx` เพื่อให้ตรวจสอบและแก้ไขได้ง่าย ตัวอย่างเช่น:
+
+- 1 ไร่ = 4 งาน = 400 ตารางวา
+- 1 ตารางวา = 4 ตารางเมตร
+- 1 บาททองคำแท่ง = 15.244 กรัม
+- 1 บาททองรูปพรรณ = 15.16 กรัม
+- 1 บาท = 4 สลึง
+
+หน่วยไทยบางประเภทอาจมีมาตรฐานต่างกันตามพื้นที่หรือชนิดสินค้า ควรตรวจสอบกับเอกสาร/คู่สัญญาที่ใช้จริงก่อนนำไปคำนวณเชิงธุรกิจ
+
+## ตรวจสอบก่อนส่งขึ้น production
 
 ```powershell
 npm run build
-npm run preview
 ```
-
-หมายเหตุ:
-
-- หากต้องการใส่ค่าพิเศษหรือคีย์ ให้สร้างไฟล์ `.env.local` และเพิ่ม `KEY=value` (อย่าเก็บคีย์ใน repo)
-
----
 
 ## ผู้เขียน
 
-เขียนโดย: นาย อดิศร รักคล้าย
-
----
-
+นาย อดิศร รักคล้าย

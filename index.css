@@ -1,0 +1,23 @@
+/* Small local fallback layer used before Tailwind CDN finishes loading. */
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  color: #0f172a;
+  background: #fbbf24;
+}
